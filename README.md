@@ -1,3 +1,2 @@
 # Eyche-source
-Enjoy
-samdisk go away
+h funny meme
