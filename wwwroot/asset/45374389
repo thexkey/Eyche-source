@@ -1,0 +1,23 @@
+%gdlatTySzniSKjP+jUNLpHvB/hKU1S6SO2zM1+cWH8hW8SDJZfE9uU2IKmfkDQKDDSDK2iSQghOFuFO+mnP6e4QS3biFGwU0iPEa8N9bm5x3VNwb2VngwLN88h3m7mpihONl2A2FaESfPHq0sZQAcphb6QcP6G5tp0SxBFgTi4g=%%45374389%local t = {}
+
+t.Foo = 
+	function() 
+		print("foo") 
+	end
+
+t.Bar = 
+	function() 
+		print("bar") 
+	end
+
+t.Help = 
+	function(funcNameOrFunc) 
+		--input argument can be a string or a function.  Should return a description (of arguments and expected side effects)
+		if funcNameOrFunc == "Foo" or funcNameOrFunc == t.Foo then 
+			return "Function Foo.  Arguments: None.  Side effect: prints foo" 
+		elseif funcNameOrFunc == "Bar" or funcNameOrFunc == t.Bar then 
+			return "Function Bar.  Arguments: None.  Side effect: prints bar" 
+		end 
+	end
+
+return t

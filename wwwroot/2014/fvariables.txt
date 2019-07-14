@@ -1,0 +1,4 @@
+local analsex = settings():GetFVariables()
+for fvariable,value in pairs(analsex) do
+    print(fvariable .. " : " .. value)
+end

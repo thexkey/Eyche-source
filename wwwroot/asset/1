@@ -1,0 +1,134 @@
+%LM5voafholl5YFc3ZPRxNPgRMETMO+9SvIVE4RN3D9HJIth02MBcrQBOQdtGaZ+GFF3Wug6CcFWcYSEjq53QQJ5s6SH5Wtijm9l3kWeA4TEmzEKCNS8j6kB6Rws4XezMEsVLZtzEK+m/9acCljm/zL9iSeMsnXQjSzi5Tjs93Oo=%%1%-- Creates all neccessary scripts for the gui on initial load, everything except build tools
+-- Created by Ben T. 10/29/10
+-- Please note that these are loaded in a specific order to diminish errors/perceived load time by user
+
+-- Creates all neccessary scripts for the gui on initial load, everything except build tools
+-- Created by Ben T. 10/29/10
+-- Please note that these are loaded in a specific order to diminish errors/perceived load time by user
+
+local deepakTestingPlace = 3569749
+
+pcall(function()
+  local sc = game:GetService("ScriptContext")
+  sc:RegisterLibrary("RbxGui", "45284430")
+  sc:RegisterLibrary("RbxGear", "45374389")
+  if game.PlaceId == deepakTestingPlace then
+	sc:RegisterLibrary("RbxStatus", "52177566")
+  end
+  sc:LibraryRegistrationComplete()
+end)
+
+local function waitForChild(instance, name)
+	while not instance:FindFirstChild(name) do
+		instance.ChildAdded:wait()
+	end
+end
+local function waitForProperty(instance, property)
+	while not instance[property] do
+		instance.Changed:wait()
+	end
+end
+
+
+local backpackTestPlaces = {41324860,87241143,1818,65033,25415,14403,33913,21783593,17467963,3271,16184658}
+
+waitForChild(game:GetService("CoreGui"),"RobloxGui")
+local screenGui = game:GetService("CoreGui"):FindFirstChild("RobloxGui")
+
+local scriptContext = game:GetService("ScriptContext")
+
+-- Resizer (dynamically resizes gui)
+coroutine.resume(coroutine.create(function()
+	loadstring('\108\111\99\97\108\32\67\111\114\101\71\117\105\32\61\32\103\97\109\101\58\71\101\116\83\101\114\118\105\99\101\40\34\67\111\114\101\71\117\105\34\41\59\10\119\104\105\108\101\32\110\111\116\32\67\111\114\101\71\117\105\58\70\105\110\100\70\105\114\115\116\67\104\105\108\100\40\34\82\111\98\108\111\120\71\117\105\34\41\32\100\111\10\9\67\111\114\101\71\117\105\46\67\104\105\108\100\65\100\100\101\100\58\119\97\105\116\40\41\59\10\101\110\100\10\108\111\99\97\108\32\82\111\98\108\111\120\71\117\105\32\61\32\67\111\114\101\71\117\105\46\82\111\98\108\111\120\71\117\105\59\10\108\111\99\97\108\32\66\111\116\116\111\109\76\101\102\116\67\111\110\116\114\111\108\32\61\32\82\111\98\108\111\120\71\117\105\58\70\105\110\100\70\105\114\115\116\67\104\105\108\100\40\34\66\111\116\116\111\109\76\101\102\116\67\111\110\116\114\111\108\34\41\10\108\111\99\97\108\32\66\111\116\116\111\109\82\105\103\104\116\67\111\110\116\114\111\108\32\61\32\82\111\98\108\111\120\71\117\105\58\70\105\110\100\70\105\114\115\116\67\104\105\108\100\40\34\66\111\116\116\111\109\82\105\103\104\116\67\111\110\116\114\111\108\34\41\10\108\111\99\97\108\32\84\111\112\76\101\102\116\67\111\110\116\114\111\108\32\61\32\82\111\98\108\111\120\71\117\105\58\70\105\110\100\70\105\114\115\116\67\104\105\108\100\40\34\84\111\112\76\101\102\116\67\111\110\116\114\111\108\34\41\10\108\111\99\97\108\32\66\117\105\108\100\84\111\111\108\115\32\61\32\82\111\98\108\111\120\71\117\105\58\70\105\110\100\70\105\114\115\116\67\104\105\108\100\40\34\66\117\105\108\100\84\111\111\108\115\34\41\10\102\117\110\99\116\105\111\110\32\109\97\107\101\89\82\101\108\97\116\105\118\101\40\41\10\66\111\116\116\111\109\76\101\102\116\67\111\110\116\114\111\108\46\83\105\122\101\67\111\110\115\116\114\97\105\110\116\32\61\32\50\10\66\111\116\116\111\109\82\105\103\104\116\67\111\110\116\114\111\108\46\83\105\122\101\67\111\110\115\116\114\97\105\110\116\32\61\32\50\10\105\102\32\84\111\112\76\101\102\116\67\111\110\116\114\111\108\32\116\104\101\110\32\84\111\112\76\101\102\116\67\111\110\116\114\111\108\46\83\105\122\101\67\111\110\115\116\114\97\105\110\116\32\61\32\50\32\101\110\100\10\105\102\32\66\117\105\108\100\84\111\111\108\115\32\116\104\101\110\32\66\117\105\108\100\84\111\111\108\115\46\70\114\97\109\101\46\83\105\122\101\67\111\110\115\116\114\97\105\110\116\32\61\32\50\32\101\110\100\10\66\111\116\116\111\109\76\101\102\116\67\111\110\116\114\111\108\46\80\111\115\105\116\105\111\110\32\61\32\85\68\105\109\50\46\110\101\119\40\48\44\48\44\49\44\45\66\111\116\116\111\109\76\101\102\116\67\111\110\116\114\111\108\46\65\98\115\111\108\117\116\101\83\105\122\101\46\89\41\10\66\111\116\116\111\109\82\105\103\104\116\67\111\110\116\114\111\108\46\80\111\115\105\116\105\111\110\32\61\32\85\68\105\109\50\46\110\101\119\40\49\44\45\66\111\116\116\111\109\82\105\103\104\116\67\111\110\116\114\111\108\46\65\98\115\111\108\117\116\101\83\105\122\101\46\88\44\49\44\45\66\111\116\116\111\109\82\105\103\104\116\67\111\110\116\114\111\108\46\65\98\115\111\108\117\116\101\83\105\122\101\46\89\41\10\101\110\100\10\102\117\110\99\116\105\111\110\32\109\97\107\101\88\82\101\108\97\116\105\118\101\40\41\10\66\111\116\116\111\109\76\101\102\116\67\111\110\116\114\111\108\46\83\105\122\101\67\111\110\115\116\114\97\105\110\116\32\61\32\49\10\66\111\116\116\111\109\82\105\103\104\116\67\111\110\116\114\111\108\46\83\105\122\101\67\111\110\115\116\114\97\105\110\116\32\61\32\49\10\105\102\32\84\111\112\76\101\102\116\67\111\110\116\114\111\108\32\116\104\101\110\32\84\111\112\76\101\102\116\67\111\110\116\114\111\108\46\83\105\122\101\67\111\110\115\116\114\97\105\110\116\32\61\32\49\32\101\110\100\10\105\102\32\66\117\105\108\100\84\111\111\108\115\32\116\104\101\110\32\66\117\105\108\100\84\111\111\108\115\46\70\114\97\109\101\46\83\105\122\101\67\111\110\115\116\114\97\105\110\116\32\61\32\49\32\101\110\100\10\66\111\116\116\111\109\76\101\102\116\67\111\110\116\114\111\108\46\80\111\115\105\116\105\111\110\32\61\32\85\68\105\109\50\46\110\101\119\40\48\44\48\44\49\44\45\66\111\116\116\111\109\76\101\102\116\67\111\110\116\114\111\108\46\65\98\115\111\108\117\116\101\83\105\122\101\46\89\41\10\66\111\116\116\111\109\82\105\103\104\116\67\111\110\116\114\111\108\46\80\111\115\105\116\105\111\110\32\61\32\85\68\105\109\50\46\110\101\119\40\49\44\45\66\111\116\116\111\109\82\105\103\104\116\67\111\110\116\114\111\108\46\65\98\115\111\108\117\116\101\83\105\122\101\46\88\44\49\44\45\66\111\116\116\111\109\82\105\103\104\116\67\111\110\116\114\111\108\46\65\98\115\111\108\117\116\101\83\105\122\101\46\89\41\10\101\110\100\10\108\111\99\97\108\32\102\117\110\99\116\105\111\110\32\114\101\115\105\122\101\40\41\10\105\102\32\82\111\98\108\111\120\71\117\105\46\65\98\115\111\108\117\116\101\83\105\122\101\46\120\32\62\32\82\111\98\108\111\120\71\117\105\46\65\98\115\111\108\117\116\101\83\105\122\101\46\121\32\116\104\101\110\10\109\97\107\101\89\82\101\108\97\116\105\118\101\40\41\10\101\108\115\101\10\109\97\107\101\88\82\101\108\97\116\105\118\101\40\41\10\101\110\100\10\101\110\100\10\82\111\98\108\111\120\71\117\105\46\67\104\97\110\103\101\100\58\99\111\110\110\101\99\116\40\102\117\110\99\116\105\111\110\40\112\114\111\112\101\114\116\121\41\10\105\102\32\112\114\111\112\101\114\116\121\32\61\61\32\34\65\98\115\111\108\117\116\101\83\105\122\101\34\32\116\104\101\110\10\119\97\105\116\40\41\10\114\101\115\105\122\101\40\41\10\101\110\100\10\101\110\100\41\10\119\97\105\116\40\41\10\114\101\115\105\122\101\40\41\10')()
+end))
+-- SubMenuBuilder (builds out the material,surface and color panels)
+scriptContext:AddCoreScript(35914081,screenGui,"SubMenuBuilder")
+
+-- ToolTipper  (creates tool tips for gui)
+scriptContext:AddCoreScript(36868950,screenGui,"ToolTipper")
+
+if game.CoreGui.Version < 2 then
+	-- (controls the movement and selection of sub panels)
+	-- PaintMenuMover
+	scriptContext:AddCoreScript(36040464,screenGui.BuildTools.Frame.PropertyTools.PaintTool,"PaintMenuMover")
+	-- MaterialMenuMover
+	scriptContext:AddCoreScript(36040495,screenGui.BuildTools.Frame.PropertyTools.MaterialSelector,"MaterialMenuMover")
+	-- InputMenuMover
+	scriptContext:AddCoreScript(36040483,screenGui.BuildTools.Frame.PropertyTools.InputSelector,"InputMenuMover")
+end
+
+-- SettingsScript 
+scriptContext:AddCoreScript(46295863,screenGui,"SettingsScript")
+
+-- MainBotChatScript
+scriptContext:AddCoreScript(39250920,screenGui,"MainBotChatScript")
+
+if game.CoreGui.Version >= 2 then
+	-- New Player List
+	scriptContext:AddCoreScript(48488235,screenGui,"PlayerListScript")
+	-- Popup Script
+	scriptContext:AddCoreScript(48488451,screenGui,"PopupScript")
+	-- Friend Notification Script (probably can use this script to expand out to other notifications)
+	scriptContext:AddCoreScript(48488398,screenGui,"NotificationScript")
+end
+
+-- For Deepak Testing
+pcall(function()
+	waitForProperty(game,"PlaceId")
+	if game.PlaceId == deepakTestingPlace then
+		scriptContext:AddCoreScript(52177626,screenGui,"RBXStatusBuffsGUIScript")
+		scriptContext:AddCoreScript(52177590,screenGui,"HealthScript v4.0")
+	end
+end)
+
+if game.CoreGui.Version >= 3 then
+	waitForProperty(game,"PlaceId")
+	local inRightPlace = true
+	for i,v in ipairs(backpackTestPlaces) do
+		if v == game.PlaceId then
+			inRightPlace = true
+			break
+		end
+	end
+	
+	waitForChild(game,"Players")
+	waitForProperty(game.Players,"LocalPlayer")
+	if game.Players.LocalPlayer.userId == 7210880 or game.Players.LocalPlayer.userId == 0 then inRightPlace = true end
+	
+	if not inRightPlace then return end -- restricting availability of backpack
+	
+	-- Backpack Builder
+	scriptContext:AddCoreScript(53878047,screenGui,"BackpackBuilder")
+	waitForChild(screenGui,"CurrentLoadout")
+	waitForChild(screenGui.CurrentLoadout,"TempSlot")
+	waitForChild(screenGui.CurrentLoadout.TempSlot,"SlotNumber")
+	-- Backpack Script
+	scriptContext:AddCoreScript(53878057,screenGui.CurrentLoadout,"BackpackScript")
+end
+--LocalizeJune2011H
+game.CoreGui.RobloxGui.TopLeftControl.Help.Size = UDim2.new(0.0, 45, 0.0, 51)
+game.CoreGui.RobloxGui.BottomLeftControl.Exit.Size = UDim2.new(0.0, 70, 0.0, 51)
+game.CoreGui.RobloxGui.BottomLeftControl.Exit.Position = UDim2.new(0, 2, 1, -53)
+game.CoreGui.RobloxGui.BottomLeftControl.Image = "nil"
+game.CoreGui.RobloxGui.BottomRightControl.Image = "nil"
+game.CoreGui.RobloxGui.BottomLeftControl.TogglePlayMode.Size = UDim2.new(0.0, 41, 0.0, 41)
+game.CoreGui.RobloxGui.BottomLeftControl.TogglePlayMode.Position = UDim2.new(0.0, 93, 1, -50)
+game.CoreGui.RobloxGui.BottomLeftControl.SettingsButton.Size = UDim2.new(0.0, 41, 0.0, 41)
+game.CoreGui.RobloxGui.BottomLeftControl.SettingsButton.Position = UDim2.new(0.0, 135, 1, -50)
+game.CoreGui.RobloxGui.BottomRightControl.CameraZoomIn.Position = UDim2.new(1, -29, 1, -55)
+game.CoreGui.RobloxGui.BottomRightControl.CameraZoomOut.Position = UDim2.new(1, -29, 1, -29)
+game.CoreGui.RobloxGui.BottomRightControl.CameraZoomIn.Size = UDim2.new(0, 22, 0, 22)
+game.CoreGui.RobloxGui.BottomRightControl.CameraZoomOut.Size = UDim2.new(0, 22, 0, 22)
+game.CoreGui.RobloxGui.BottomRightControl.CameraTiltUp.Position = UDim2.new(1, -56, 1, -55)
+game.CoreGui.RobloxGui.BottomRightControl.CameraTiltDown.Position = UDim2.new(1, -56, 1, -29)
+game.CoreGui.RobloxGui.BottomRightControl.CameraTiltUp.Size = UDim2.new(0, 22, 0, 22)
+game.CoreGui.RobloxGui.BottomRightControl.CameraTiltDown.Size = UDim2.new(0, 22, 0, 22)
+game.CoreGui.RobloxGui.BottomRightControl.ToggleFullScreen.Size = UDim2.new(0, 30, 0, 51)
+game.CoreGui.RobloxGui.BottomRightControl.ToggleFullScreen.Position = UDim2.new(1, -140, 1, -55)
+game.CoreGui.RobloxGui.BottomRightControl.Screenshot.Size = UDim2.new(0, 31, 0, 31)
+game.CoreGui.RobloxGui.BottomRightControl.Screenshot.Position = UDim2.new(1, -171, 1, -38)
+game.CoreGui.RobloxGui.BottomRightControl.RecordToggle.Size = UDim2.new(0, 31, 0, 31)
+game.CoreGui.RobloxGui.BottomRightControl.RecordToggle.Position = UDim2.new(1, -200, 1, -38)
+game.CoreGui.RobloxGui.BottomRightControl.ReportAbuse.Position = UDim2.new(1, -110, 1, -55)
+game.CoreGui.RobloxGui.BottomRightControl.ReportAbuse.Size = UDim2.new(0, 55, 0, 51)
+game.CoreGui.RobloxGui.BottomLeftControl.ToolButton:Remove()
